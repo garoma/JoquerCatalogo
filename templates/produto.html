@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ produto.titulo }} - Joker Jeans{% endblock %}
+{% block head %}
+<script src="{{ url_for('static', filename='js/slider.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="produto-view">
+    <div class="slider">
+        <button class="prev" aria-label="Imagem anterior">&#10094;</button>
+        {% for img in produto.imagens %}
+        <img src="{{ url_for('static', filename='img/' + img) }}" alt="{{ produto.titulo }}">
+        {% endfor %}
+        <button class="next" aria-label="Próxima imagem">&#10095;</button>
+    </div>
+    <div class="info">
+        <h2>{{ produto.titulo }}</h2>
+        <p class="price">R$ {{ '%.2f'|format(produto.preco) }}</p>
+        <p><strong>Tamanhos:</strong> {{ produto.tamanhos }}</p>
+        <p class="descricao">{{ produto.descricao }}</p>
+        <a class="whatsapp" href="https://wa.me/5581991257099?text=Tenho interesse no produto id: {{ produto.id }} descricao: {{ produto.descricao }}" target="_blank" rel="noopener noreferrer">Comprar via WhatsApp</a>
+    </div>
+</div>
+{% endblock %}

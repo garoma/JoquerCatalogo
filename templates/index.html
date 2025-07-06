@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Catálogo - Joker Jeans{% endblock %}
+
+{% block content %}
+<section class="grid">
+    {% for p in produtos %}
+    <a href="{{ url_for('produto', produto_id=p.id) }}" class="card" aria-label="Produto {{ p.titulo }}">
+        <img src="{{ url_for('static', filename='img/' + p.capa) }}" alt="{{ p.titulo }}" />
+        <h3>{{ p.titulo }}</h3>
+        <p class="price">R$ {{ '%.2f'|format(p.preco) }}</p>
+        <p class="sizes">Tamanhos: {{ p.tamanhos }}</p>
+    </a>
+    {% endfor %}
+</section>
+{% endblock %}
